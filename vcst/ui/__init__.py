@@ -46,9 +46,7 @@ class VCST(VUnit):
         self._test_filter = test_filter
         self._vhdl_standard: VHDLStandard = select_vhdl_standard(vhdl_standard)
 
-        self._external_preprocessors = []  # type: ignore
-        self._location_preprocessor = None
-        self._check_preprocessor = None
+        self._preprocessors = []  # type: ignore
 
         self._simulator_class = SIMULATOR_FACTORY.select_simulator()
 
@@ -74,7 +72,7 @@ class VCST(VUnit):
 
         self._builtins = Builtins(self, self._vhdl_standard, simulator_class)
         if compile_builtins:
-            self.add_builtins()
+            self.add_vhdl_builtins()
     
     def library(self, library_name: str):
         """
