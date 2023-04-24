@@ -17,7 +17,7 @@ def set_env_var(self, env):
     process = self._process()    
     for var in env:
         var_value = env[var]
-        var_value = env[var].replace('{', '\\{').replace('}', '\\}')
+        var_value = env[var].replace('[', '\\[').replace(']', '\\]').replace('{', '\\{').replace('}', '\\}')
         
         if ';' in var_value or '\n' in var_value:
             continue
@@ -130,7 +130,7 @@ def format_generic(value):
       return value_str
    else:
        value_str = str(value)
-       if " " in value_str or type(value) is str:
+       if " " in value_str:
            return f'"{value_str}"'
        return value_str    
 
